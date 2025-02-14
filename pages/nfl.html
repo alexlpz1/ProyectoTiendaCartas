@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../estilos.css">        
+    <style>
+        #usuarioNombre {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-family: 'MiFuente2';
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body> 
+    <div id="arriba2">🃏 SOBRE DE CARTAS GRATIS EN TU 1º PEDIDO 🃏</div>
+    <div id="arriba1">📦 ENVIO GRATIS EN PEDIDOS SUPERIORES A 50€ 📦</div>
+
+    <header>
+        <a href="../index.html"><h1>Rincón de las Cartas</h1></a>
+        <nav>
+            <a href="../pages/pokemon.html">Pokémon</a>
+            <a href="../pages/fifa.html">FIFA</a>
+            <a href="../pages/nfl.html">VARIEDAD</a>
+            <a href="../pages/accesorios.html">Accesorios</a>
+            <a href="../pages/cuenta.php">Cuenta</a>
+        </nav>
+        <div id="usuarioNombre"><a style="text-decoration: none; color: #fcbd0b;" href="cuenta.php">Bienvenido, <span id="nombreUsuario">Invitado</span></a></div>
+    </header>
+    
+
+    <div class="productos">
+        <div class="producto" data-id="uno">
+            <div class="imgFlip">
+                <div class="flip-inner">
+                    <img class="front" src="../img/Variedad/BarajaUno.png" alt="Baraja uno">
+                    <img class="back" src="../img/Variedad/BarajaUno2.png" alt="Baraja Dos">
+                </div>
+            </div>
+            <h3>Baraja Uno</h3>
+            <div class="precio">9,95€</div>
+            <button class="boton-comprar">Añadir al carrito</button>
+        </div>
+        
+        <div class="producto" data-id="poker">
+            <div class="imgFlip">
+                <div class="flip-inner">
+                    <img class="front" src="../img/Variedad/BarajaPoker1.png" alt="Baraja Azul">
+                    <img class="back" src="../img/Variedad/BarajaPoker2.png" alt="Baraja Roja">
+                </div>
+            </div>
+            <h3>Baraja Poker Bicycle</h3>
+            <div class="precio">15,70€</div>
+            <button class="boton-comprar">Añadir al carrito</button>
+        </div>
+        
+        
+        <div class="producto" data-id="sobre">
+            <div class="imgFlip">
+                <div class="flip-inner">
+                    <img class="front" src="../img/Variedad/SobreFutbol1.jpg" alt="Sobre Futbol">
+                    <img class="back" src="../img/Variedad/SobreFutbol2.jpg" alt="Sobre Futbol">
+                </div>
+            </div>
+            <h3>Sobre Futbol Panini</h3>
+            <div class="precio">1.00€</div>
+            <button class="boton-comprar">Añadir al carrito</button>
+        </div>
+        
+        <div class="producto" data-id="española">
+            <div class="imgFlip">
+                <div class="flip-inner">
+                    <img class="front" src="../img/Variedad/BarajaEspañola1.png" alt="Baraja Española">
+                    <img class="back" src="../img/Variedad/BarajaEspañola2.png" alt="Baraja Española">
+                </div>
+            </div>
+            <h3>Baraja Española Fournier</h3>
+            <div class="precio">9.99€</div>
+            <button class="boton-comprar">Añadir al carrito</button>
+        </div>
+    
+    </div>
+    <script>
+        document.querySelectorAll('.producto').forEach(producto => {
+            producto.addEventListener('click', function() {
+                const idCarta = this.getAttribute('data-id');
+                window.location.href = `detalle3.html?id=${idCarta}`;
+            });
+        });
+    </script>
+</body>
+</html>

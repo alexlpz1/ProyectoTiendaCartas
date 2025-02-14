@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pasarela de Pago - Rincón de las Cartas</title>
+    <link rel="stylesheet" href="../estilos.css">
+</head>
+<body>
+    <div id="arriba2">🃏 SOBRE DE CARTAS GRATIS EN TU 1º PEDIDO 🃏</div>
+    <div id="arriba1">📦 ENVIO GRATIS EN PEDIDOS SUPERIORES A 50€ 📦</div>
+
+    <header>
+        <a href="../index.html"><h1>Rincón de las Cartas</h1></a>
+        <nav>
+            <a href="../pages/pokemon.html">Pokémon</a>
+            <a href="../pages/fifa.html">FIFA</a>
+            <a href="../pages/nfl.html">NFL</a>
+            <a href="../pages/accesorios.html">Accesorios</a>
+            <a href="../pages/cuenta.html">Cuenta</a>
+        </nav>
+    </header>
+
+    <div class="contenedor-pago">
+        <h2>Resumen del Pedido</h2>
+        <div id="carrito-resumen"></div>
+        <h3>Total: <span id="total-carrito">110.00€</span></h3>
+
+        <h2>Finalizar Pago</h2>
+        <form id="formulario-pago">
+            <label for="nombre">Nombre en la Tarjeta:</label>
+            <input type="text" id="nombre" required>
+
+            <label for="tarjeta">Número de Tarjeta:</label>
+            <input type="text" id="tarjeta" placeholder="1234 5678 9012 3456" maxlength="19" required>
+
+            <label for="fecha">Fecha de Expiración:</label>
+            <input type="text" id="fecha" placeholder="MM/AA" maxlength="5" required>
+
+            <label for="cvv">CVV:</label>
+            <input type="text" id="cvv" placeholder="123" maxlength="3" required>
+
+            <button type="submit">Pagar</button>
+        </form>
+
+        <div id="mensaje" class="oculto"></div>
+    </div>
+
+    <script>
+        function cargarCarrito() {
+            let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+            let carritoResumen = document.getElementById("carrito-resumen");
+            let totalCarrito = document.getElementById("total-carrito");
+
+            carritoResumen.innerHTML = "";
+            let total = 0;
+
+            if (carrito.length === 0) {
+                carritoResumen.innerHTML = "<p>El carrito está vacío.</p>";
+                totalCarrito.textContent = "0.00€"; // Mostrar 0.00€ si el carrito está vacío
+                return;
+            }
+
+            carrito.forEach(producto => {
+                let item = document.createElement("div");
+                item.classList.add("producto-carrito");
+                item.innerHTML = `<p>${producto.nombre} - ${producto.precio}€</p>`;
+                carritoResumen.appendChild(item);
+                total += parseFloat(producto.precio); // Asegúrate de que precio sea un número
+            });
+
+            totalCarrito.textContent = total.toFixed(2) + "€"; // Formatear a dos decimales y añadir €
+        }
+
+        document.getElementById("formulario-pago").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            let nombre = document.getElementById("nombre").value.trim();
+            let tarjeta = document.getElementById("tarjeta").value.replace(/\s/g, '');
+            let fecha = document.getElementById("fecha").value.trim();
+            let cvv = document.getElementById("cvv").value.trim();
+            let mensaje = document.getElementById("mensaje");
+
+            if (nombre === "" || tarjeta.length !== 16 || fecha.length !== 5 || cvv.length !== 3) {
+                mensaje.textContent = "Por favor, ingrese datos válidos.";
+                mensaje.classList.add("error");
+                mensaje.classList.remove("oculto");
+                return;
+            }
+
+            mensaje.textContent = "Pago realizado con éxito. ¡Gracias por tu compra!";
+            mensaje.classList.add("exito");
+            mensaje.classList.remove("oculto");
+
+            localStorage.removeItem("carrito"); // Limpiar carrito
+
+            setTimeout(() => {
+                window.location.href = "../index.html"; // Redirigir a index.html (corregido)
+            }, 3000);
+        });
+
+        document.getElementById("tarjeta").addEventListener("input", function (e) {
+            e.target.value = e.target.value.replace(/\D/g, '').replace(/(.{4})/g, '$1 ').trim();
+        });
+
+        document.getElementById("fecha").addEventListener("input", function (e) {
+            e.target.value = e.target.value.replace(/\D/g, '').replace(/(\d{2})(\d{0,2})/, '$1/$2').trim();
+        });
+
+        cargarCarrito(); // Cargar el carrito al iniciar la página
+    </script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            text-align: center;
+        }
+
+        .contenedor-pago {
+            background: white;
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .producto-carrito {
+            background: #eee;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #fcbd0b;
+            color: black;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #e5aa00;
+        }
+
+        .oculto {
+            display: none;
+        }
+
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+
+        .exito {
+            color: green;
+            margin-top: 10px;
+        }
+    </style>
+</body>
+</html>
