@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rincón de las Cartas - Tu tienda de trading cards</title>
+    <link rel="stylesheet" href="estilos.css">
+    <style>
+        #usuarioNombre {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-family: 'MiFuente2';
+            font-size: 16px;
+        }
+    </style>
+    
+</head>
+<body>
+    <div id="arriba2">🃏 SOBRE DE CARTAS GRATIS EN TU 1º PEDIDO 🃏</div>
+    <div id="arriba1">📦 ENVIO GRATIS EN PEDIDOS SUPERIORES A 50€ 📦</div>
+    <header>
+        <a href="" style="text-decoration: none; color: black;">aaaaa</a>
+        <a href="index.html"><h1>Rincón de las Cartas</h1></a>
+
+        <nav>
+            <a href="pages/pokemon.html">Pokémon</a>
+            <a href="pages/fifa.html">FIFA</a>
+            <a href="pages/nfl.html">VARIEDAD</a>
+            <a href="pages/sobrenosotros.html">Sobre Nosotros</a>
+            <a href="pages/cuenta.php">Cuenta</a>
+        </nav>
+        
+        
+    </header>
+   
+    <div class="carousel">
+        <img style="width: 100%;" src="img/fondoImg1.png" class="active" alt="Promoción Pokémon">
+        <img style="width: 100%;" src="img/fondoImg2.png" alt="Novedades FIFA">
+        <img style="width: 100%;" src="img/fondoImg3.png" alt="Colección NFL"> 
+        <img style="width: 100%;" src="img/fondoImg4.png" alt="Accesorios">
+        <button class="prev" onclick="prevSlide()">&#10094;</button>
+        <button class="next" onclick="nextSlide()">&#10095;</button>
+    </div>
+    <hr style="background-color: #fcbd0b; height: 10px; border: none;">
+    <div class="categorias">
+        <h2>NOVEDADES DESTACADAS</h2>
+    </div>
+
+    <div class="productos">
+        <div class="producto">
+            <div class="imgFlip">
+                <div class="flip-inner">
+                    <img class="front" src="img/Pokemon/CartaCharizarVstar_.jpg" alt="Charizard VSTAR">
+                    <img class="back" src="img/Pokemon/CartaPokemonBack_.jpg" alt="Haaland Card">
+                </div>
+            </div>
+            <h3>Charizard VSTAR Premium</h3>
+            <div class="precio">89.99€</div>
+            <button class="boton-comprar">Añadir al carrito</button>
+        </div>
+        
+        
+        <div class="producto">
+            <div class="imgFlip">
+                <div class="flip-inner">
+                    <img class="front" src="img/Fifa/CartaHaaland.png" alt="Haaland Carta">
+                    <img class="back" src="img/Fifa/CartaTotyBack.png" alt="Sobre fifa">
+                </div>
+            </div>
+            <h3>Erling Haaland Toty</h3>
+            <div class="precio">129.99€</div>
+            <button class="boton-comprar">Añadir al carrito</button>
+        </div>
+        
+        
+        <div class="producto">
+            <div class="imgFlip">
+                <div class="flip-inner">
+                    <img class="front" src="img/Nfl/CartaTomBrady.jpg" alt="Tom Brady Carta">
+                    <img class="back" src="img/Nfl/SobreNfl.jpg" alt="Sobre Nfl">
+                </div>
+            </div>
+            <h3>Tom Brady Legend Card</h3>
+            <div class="precio">199.99€</div>
+            <button class="boton-comprar">Añadir al carrito</button>
+        </div>
+        
+        <div class="producto">
+            <div class="imgFlip">
+                <div class="flip-inner">
+                    <img class="front" src="img/Pokemon/Pikachu.png" alt="Pikachu Cartas">
+                    <img class="back" src="img/Pokemon/CartaPokemonBack_.jpg" alt="Sobre Pokemon">
+                </div>
+            </div>
+            <h3>Carta Pikachu V</h3>
+            <div class="precio">49.99€</div>
+            <button class="boton-comprar">Añadir al carrito</button>
+        </div>
+    </div>
+    
+    <script>
+        window.onload = function() {
+            const userData = localStorage.getItem('userData');
+            if (userData) {
+                mostrarNombreUsuario(JSON.parse(userData).nombre); 
+            }
+        };
+        function mostrarNombreUsuario(nombre) {
+            const nombreUsuarioElemento = document.getElementById('nombreUsuario');
+            nombreUsuarioElemento.textContent = nombre;
+        }
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let index = 0;
+            const images = document.querySelectorAll(".carousel img");
+            images[index].classList.add("active");
+
+            function showSlide(n) {
+                images[index].classList.remove("active");
+                index = (n + images.length) % images.length;
+                images[index].classList.add("active");
+            }
+        
+            function nextSlide() {
+                showSlide(index + 1);
+            }
+        
+            function prevSlide() {
+                showSlide(index - 1);
+            }
+        
+            document.querySelector(".next").addEventListener("click", nextSlide);
+            document.querySelector(".prev").addEventListener("click", prevSlide);
+        
+            setInterval(nextSlide, 3000);
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../estilos.css">     
+    <style>
+        .inicio_sesion{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        @font-face {
+            font-family: 'MiFuente2';
+            src: url('Fuentes/Monomaniac_One/MonomaniacOne-Regular.ttf') format('truetype');
+        }
+        .inicio_sesion label{
+            font-family: 'MiFuente2';
+        }
+        .inicio_sesion{
+            font-family: 'MiFuente2';
+        }
+    </style>
+</head>
+<body> 
+    <div id="arriba2">🃏 SOBRE DE CARTAS GRATIS EN TU 1º PEDIDO 🃏</div>
+    <div id="arriba1">📦 ENVIO GRATIS EN PEDIDOS SUPERIORES A 50€ 📦</div>
+
+    <header>
+        <a href="../index.html"><h1>Rincón de las Cartas</h1></a>
+        <nav>
+            <a href="../pages/pokemon.html">Pokémon</a>
+            <a href="../pages/fifa.html">FIFA</a>
+            <a href="../pages/nfl.html">NFL</a>
+            <a href="../pages/accesorios.html">Accesorios</a>
+            <a href="../pages/cuenta.html">Cuenta</a>
+        </nav>
+    </header>
+
+    <div class="inicio_sesion">
+        <form action="" method="get">
+            <br>
+            <h2>Formulario de registro</h2><br>
+            <label for="">Nombre</label><br>
+            <input type="text" name="nombreTxt" required id="nombreTxt"><br>
+            <label for="">Apellidos</label><br>
+            <input type="text" name="apellidosTxt" required id="apellidosTxt"><br>
+            <label for="">Edad</label><br>
+            <input type="number" name="edad" required id="edad"><br>
+            <label for="">Correo</label><br>
+            <input type="mail" name="emailTxt" required id="emailTxt"><br>
+            <label for="">Contraseña</label><br>
+            <input type="password" name="contraseñaTxt" required id="contraseñaTxt"><br><br>
+            <input type="submit" value="Enviar">
+        </form>
+    </div>
+    
+       
+    
+</body>
+</html>
